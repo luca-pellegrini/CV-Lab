@@ -1,4 +1,4 @@
-// Lab2 Task 1
+// Lab2 Task 2
 #include <iostream>
 #include <string>
 
@@ -7,16 +7,9 @@
 #include <opencv2/highgui.hpp>
 
 #include "ImageFilters.h"
+#include "../include/myutils.h"
 
 using namespace std;
-
-
-string remove_extension_from_filename(const string& s)
-{
-    string::size_type ext_pos = s.rfind(".");
-    string r = s.substr(0, ext_pos);
-    return r;
-}
 
 
 int main(int argc, char** argv)
@@ -33,20 +26,20 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    cv::Mat img_min_filtered = img.clone();
-//    cv::Mat img_max_filtered = img.clone();
+    cv::Mat img_min_f = img.clone();
+    cv::Mat img_max_f = img.clone();
 
     int ksize = 3;
-    min_filter(img, img_min_filtered, ksize);
-//    max_filter(img, img_max_filtered, ksize);
+    min_filter(img, img_min_f, ksize);
+    max_filter(img, img_max_f, ksize);
 
 //    string filename = remove_extension_from_filename(argv[1]);
 //    string filename_min = filename + "_min_filter.png";
 //    string filename_max = filename + "_max_filter.png";
 
     cv::imshow("image", img);
-    cv::imshow("min filter", img_min_filtered);
-//    cv::imshow("max filter", img_max_filtered);
+    cv::imshow("min filter", img_min_f);
+    cv::imshow("max filter", img_max_f);
     cv::waitKey(0);
     
 //    cout << "Saving grayscale image to " << filename << endl;
