@@ -1,8 +1,8 @@
 # Lab2 Task 3
 add_executable(task3
     main.cpp
-    ImageFilters.cpp
-    ImageFilters.h
+    "../include/ImageFilters.cpp"
+    "../include/ImageFilters.h"
     "../include/myutils.cpp"
     "../include/myutils.h"
 )
