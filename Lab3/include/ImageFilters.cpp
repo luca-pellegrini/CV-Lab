@@ -201,3 +201,46 @@ void median_filter(cv::Mat &src, cv::Mat &dst, int ksize)
 
     return;
 }
+
+unsigned char channel_mean(const cv::Mat &img, int i, int j, int ch_index, int ksize)
+{
+    /* Kernel size must be an odd number */
+    if (ksize % 2 == 0)
+    {
+        throw std::invalid_argument("Error: ksize: kernel size must be an odd number");
+    }
+    int channels = img.channels();
+    if (channels != 1 && channels != 3)
+    {
+        throw std::invalid_argument("Error: unsupported number of channels in image");
+    }
+    int rows = img.rows;
+    int cols = img.cols;
+    if (i < 0 || i >= rows || j < 0 || j >= cols)
+    {
+        throw std::invalid_argument("Error: invalid element coordinates");
+    }
+    std::vector<int> neighborhood;
+    int offset = (ksize - 1) / 2;
+    for (int m = i - offset; m <= i + offset; m++)
+    {
+        for (int n = j - offset; n <= j + offset; n++)
+        {
+            if (0 <= m && m < rows && 0 <= n && n < cols)
+            {
+                switch (channels)
+                {
+                    case 1:
+                        neighborhood.push_back(img.at<unsigned char>(m, n));
+                        break;
+                    case 3:
+                        neighborhood.push_back(img.at<cv::Vec3b>(m, n)[ch_index]);
+                        break;
+                }
+            }
+        }
+    }
+    /* Compute and return the mean */
+    int sum = std::accumulate(neighborhood.begin(), neighborhood.end(), 0);
+    return static_cast<unsigned char>(sum / (ksize * ksize));
+}
