@@ -1,8 +1,3 @@
-#include <algorithm>
-#include <iostream>
-#include <stdexcept>
-#include <vector>
-
 #include "ImageFilters.h"
 
 using std::cout;
@@ -11,12 +6,7 @@ using std::endl;
 
 void min_filter(const cv::Mat& src, cv::Mat& dst, int ksize)
 {
-    /* Min filter
-     *
-     * This filter only supports images with either 1 or 3 channels,
-     * with values codified as unsigned chars.
-     * Kernel size must be an odd number.
-     */
+    /* Kernel size must be an odd number */
     if (ksize % 2 == 0)
     {
         throw std::invalid_argument("Error: ksize: kernel size must be an odd number");
@@ -40,7 +30,6 @@ void min_filter(const cv::Mat& src, cv::Mat& dst, int ksize)
     {
         for (int j = 0; j < src.cols; j++)
         {
-//            cout << "reading pixel (" << i << "," << j << ")" << endl;
             /* Copy values around the current pixel */
             for (int c = 0; c < channels; c++)
             {
@@ -64,7 +53,6 @@ void min_filter(const cv::Mat& src, cv::Mat& dst, int ksize)
                 }
                 /* Compute the minimum, for every channel */
                 unsigned char value = *std::min_element(neighborhood[c].begin(), neighborhood[c].end());
-//                cout << "pixel (" << i << "," << j << "), channel " << c << ": value = " << static_cast<int>(value) << endl;
                 switch (channels)
                 {
                     case 1:
@@ -84,12 +72,7 @@ void min_filter(const cv::Mat& src, cv::Mat& dst, int ksize)
 
 void max_filter(const cv::Mat& src, cv::Mat& dst, int ksize)
 {
-    /* Max filter
-     *
-     * This filter only supports images with either 1 or 3 channels,
-     * with values codified as unsigned chars.
-     * Kernel size must be an odd number.
-     */
+    /* Kernel size must be an odd number */
     if (ksize % 2 == 0)
     {
         throw std::invalid_argument("Error: ksize: kernel size must be an odd number");
@@ -152,12 +135,7 @@ void max_filter(const cv::Mat& src, cv::Mat& dst, int ksize)
 
 void median_filter(cv::Mat &src, cv::Mat &dst, int ksize)
 {
-    /* Median filter
-     *
-     * This filter only supports images with either 1 or 3 channels,
-     * with values codified as unsigned chars.
-     * Kernel size must be an odd number.
-     */
+    /* Kernel size must be an odd number */
     if (ksize % 2 == 0)
     {
         throw std::invalid_argument("Error: ksize: kernel size must be an odd number");
