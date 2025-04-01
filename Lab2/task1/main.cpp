@@ -6,16 +6,9 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
+#include "../include/myutils.h"
 
 using namespace std;
-
-
-string remove_extension_from_filename(const string& s)
-{
-    string::size_type ext_pos = s.rfind(".");
-    string r = s.substr(0, ext_pos);
-    return r;
-}
 
 
 int main(int argc, char** argv)
@@ -31,17 +24,21 @@ int main(int argc, char** argv)
         cerr << "Error: missing file, improper permissions, unsupported or invalid format\n";
         return 1;
     }
-    cv::namedWindow("image");
+    cv::namedWindow("image", cv::WINDOW_NORMAL);
     cv::imshow("image", img);
     cv::waitKey(0);
+
+    cv::Mat img_g(img.rows, img.cols, CV_8U);
     
-    cv::cvtColor(img, img, cv::COLOR_BGR2GRAY);
+    int dst_chn = 1;
+    cv::cvtColor(img, img_g, cv::COLOR_BGR2GRAY, dst_chn);
     
     string filename = remove_extension_from_filename(argv[1]);
-    filename += "_grayscale.png";
+    string ext = ".png";
+    filename += "_grayscale" + ext;
     
     cout << "Saving grayscale image to " << filename << endl;
-    cv::imwrite(filename, img);
+    cv::imwrite(filename, img_g);
     
     return 0;
 }
