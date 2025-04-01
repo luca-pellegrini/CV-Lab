@@ -1,3 +1,11 @@
+## Project specific
+
+Lab*.zip
+Astronaut_salt_pepper_*
+Garden_grayscale_*
+
+## C++, CMake, Qt
+
 # Prerequisites
 *.d
 
