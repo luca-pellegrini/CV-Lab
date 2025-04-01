@@ -1,6 +1,7 @@
 #include "myutils.h"
 
 using std::cout;
+using std::cerr;
 using std::endl;
 
 void print_image_details(const cv::Mat &img)
