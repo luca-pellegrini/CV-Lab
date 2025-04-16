@@ -6,7 +6,7 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
-#include "../include/myutils.h"
+#include "myutils.h"
 
 using namespace std;
 
