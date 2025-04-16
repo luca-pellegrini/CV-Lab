@@ -8,14 +8,31 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+include_directories(include)
 
-add_subdirectory(task1)
-add_subdirectory(task2)
-#add_subdirectory(task3)
-#add_subdirectory(task4)
-#add_subdirectory(task5)
-#add_subdirectory(task6)
+# Task 1
+add_executable(task1
+    task1/main.cpp
+    include/myutils.cpp
+    include/myutils.h
+)
+target_link_libraries(task1 ${OpenCV_LIBS})
+
+# Task 2
+add_executable(task2
+    task2/main.cpp
+    include/myutils.cpp
+    include/myutils.h
+    include/ImageFilters.cpp
+    include/ImageFilters.h
+)
+target_link_libraries(task2 ${OpenCV_LIBS})
+
+# Task 3
+
+# Task 4
+
+# Task 5
 
 #install(TARGETS Lab2
 #    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

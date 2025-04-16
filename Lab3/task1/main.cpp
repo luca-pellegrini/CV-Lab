@@ -6,7 +6,7 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
-#include "../include/myutils.h"
+#include "myutils.h"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ void mouseHandler(int, int, int, int, void*);
 
 int main(int argc, char *argv[])
 {
-    cv::CommandLineParser parser(argc, argv, "{@input | ../Robocup.jpg | input image}");
+    cv::CommandLineParser parser(argc, argv, "{@input | Robocup.jpg | input image}");
     string about_text = "Lab3 Task1: print BGR color value of pixels where the mouse clicked\n";
     parser.about(about_text);
     parser.printMessage();

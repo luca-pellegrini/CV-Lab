@@ -6,8 +6,8 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
-#include "../include/myutils.h"
-#include "../include/ImageFilters.h"
+#include "myutils.h"
+#include "ImageFilters.h"
 
 using namespace std;
 
